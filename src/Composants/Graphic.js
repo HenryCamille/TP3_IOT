@@ -5,9 +5,9 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 function Graphic (props) {
 
   const {data} = props;
-  const liste = data.map((goat) => ({
-    heartRate : goat.heaRtrate, 
-    heure : new Date(goat.timestamp).toLocaleTimeString('fr-FR'), 
+  const liste = data.map((rate) => ({
+    heartRate : rate.heartRate, 
+    heure : new Date(rate.timestamp).toLocaleTimeString('fr-FR'), 
     }))
     return (
       <ResponsiveContainer width="100%" height={200}>

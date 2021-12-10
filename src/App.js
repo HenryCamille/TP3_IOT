@@ -3,26 +3,63 @@ import logo from "./logo.svg";
 import "./App.css";
 import InstantHeartRate from "./Composants/InstHeartRate";
 import Graphic from "./Composants/Graphic";
+import mqtt from 'mqtt';
 
 function App() {
   const [measurements, setMeasurements] = useState([]);
-  useEffect(() =>{
-    setInterval(()=>{
-      const measurement = {
-        timestamp: new Date().getTime(),
-        heartRate: Math.floor(Math.random() * (200 - 40) + 40)
-      };
+
+  function subscribeToMqtt(){
+    const client  = mqtt.connect('mqtt://localhost:8080')
+    
+    client.on('connect', function () {
+      console.log("connected")
+      client.subscribe('heartRateTopic', function (err) {
+        
+      })
+    })
+    
+    client.on('message', function (topic, message) {
+
+      
       setMeasurements((prev) =>{
         if (prev.length > 5) {
           prev = prev.slice(-5  );
         }
-        const liste = [...prev, measurement]
-
+        const liste = [...prev, JSON.parse(message.toString())]
+  
         return liste
+  
+        })
 
-        })}, 2000);
+     console.log(JSON.parse(
+     message.toString())
+    )
+    
+      
+    })
+  }
 
-  },[])
+
+function setBPM (){
+  setInterval(()=>{
+    const measurement = {
+      timestamp: new Date().getTime(),
+      heartRate: Math.floor(Math.random() * (200 - 40) + 40)
+    };
+    setMeasurements((prev) =>{
+      if (prev.length > 5) {
+        prev = prev.slice(-5  );
+      }
+      const liste = [...prev, measurement]
+
+      return liste
+
+      })}, 2000);
+}
+
+  useEffect(() =>{
+    subscribeToMqtt();
+  },[]);
 
 
   let measurement = null;
