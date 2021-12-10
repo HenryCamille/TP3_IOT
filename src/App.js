@@ -12,7 +12,9 @@ function App() {
         timestamp: new Date().getTime(),
         heartRate: Math.floor(Math.random() * (200 - 40) + 40)
       };
-      setMeasurements((prev) => [...prev.slice(1).slice(-40), measurement]);
+      if (measurements.length > 50) {
+        setMeasurements((prev) => [...prev.slice(1).slice(-50), measurement]);}
+      setMeasurements((prev) => [...prev.slice(1).slice(-50), measurement]);
     }, 5000);
   },[])
 
