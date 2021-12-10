@@ -12,11 +12,18 @@ function App() {
         timestamp: new Date().getTime(),
         heartRate: Math.floor(Math.random() * (200 - 40) + 40)
       };
-      if (measurements.length > 50) {
-        setMeasurements((prev) => [...prev.slice(1).slice(-50), measurement]);}
-      setMeasurements((prev) => [...prev.slice(1).slice(-50), measurement]);
-    }, 5000);
+      setMeasurements((prev) =>{
+        if (prev.length > 9) {
+          prev = prev.slice(-9);
+        }
+        const liste = [...prev, measurement]
+
+        return liste
+
+        })}, 2000);
+
   },[])
+
 
   let measurement = null;
   if (measurements.length>0){

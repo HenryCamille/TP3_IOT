@@ -5,13 +5,16 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 function Graphic (props) {
 
   const {data} = props;
-
+  const liste = data.map((goat) => ({
+    heartRate : goat.heaRtrate, 
+    heure : new Date(goat.timestamp).toLocaleTimeString('fr-FR'), 
+    }))
     return (
       <ResponsiveContainer width="100%" height={200}>
         <LineChart
           width={500}
           height={300}
-          data={data}
+          data={liste}
           margin={{
             top: 5,
             right: 30,
@@ -20,7 +23,7 @@ function Graphic (props) {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="timeStamp" />
+          <XAxis dataKey="heure" />
           <YAxis label="BPM"/>
           <Tooltip />
           <Legend />
