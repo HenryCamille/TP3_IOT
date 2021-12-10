@@ -1,6 +1,10 @@
 function InstantHeartRate() {
+
+    const val = Math.random() * (200 - 40) + 40;
+
+
     return (
-      <div>Ceci est mon composant!</div>
+      <div>valeur: {val}</div>
     )
   }
 
