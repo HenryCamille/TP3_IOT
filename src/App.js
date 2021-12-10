@@ -1,16 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
-import InstantHeartRate from './Composants/InstHeartRate'
+import logo from "./logo.svg";
+import "./App.css";
+import InstantHeartRate from "./Composants/InstHeartRate";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Une application pour les BPM.
-        </p>
-        <InstantHeartRate/>
+        <p>Une application pour les BPM.</p>
+        <InstantHeartRate />
         <a
           className="App-link"
           href="https://reactjs.org"
