@@ -13,8 +13,8 @@ function App() {
         heartRate: Math.floor(Math.random() * (200 - 40) + 40)
       };
       setMeasurements((prev) =>{
-        if (prev.length > 9) {
-          prev = prev.slice(-9);
+        if (prev.length > 5) {
+          prev = prev.slice(-5  );
         }
         const liste = [...prev, measurement]
 
