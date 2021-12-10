@@ -1,29 +1,33 @@
 
-
-
 function InstantHeartRate(props) {
 
     var {data} = props; //Met les valeurs de l'App.js dans le composant.
-    console.log(data); 
+    
 
-    var classe = "color";
+    var classe = "ok";
+    
 
-    if (data > 120){
+if (!data){
+    return <div> no data </div>
+}
+    let text = data.heartRate + " BPM : Normal"
+
+    if (data.heartRate > 120){
 
         classe="danger";
-        data = data + " BPM : ATTENTION ! ";
+        text = data.heartRate + " BPM : ATTENTION ! ";
     }
-    else if (data < 50){
+    else if (data.heartRate < 50){
         classe="danger";
-        data = data + " BPM : ATTENTION ! ";
+        text = data.heartRate + " BPM : ATTENTION ! ";
     }
+    
+    
+    
+    
 
-    else{
-        classe="ok";
-        data = data + " BPM : Normal ";
-    }
     return (
-        <div class={classe}>Rythme cardiaque : {data} 
+        <div className={classe}>Rythme cardiaque : {text} 
         </div>
       )
     }
