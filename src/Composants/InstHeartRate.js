@@ -7,9 +7,10 @@ function InstantHeartRate(props) {
     var classe = "ok";
     
 
-if (!data){
-    return <div> no data </div>
-}
+    if (!data){
+        return <div> no data </div>
+    }
+    
     let text = data.heartRate + " BPM : Normal"
 
     if (data.heartRate > 120){
